@@ -8,26 +8,28 @@ datasource db {
 }
 
 model Org {
-  id       String @id @default(uuid())
-  name     String
-  email    String
-  address  String
-  cep      String
-  phone    String
-  password String
-  pets     Pet[]
+  id        String   @id @default(uuid())
+  name      String
+  email     String
+  address   String
+  cep       String
+  phone     String
+  password  String
+  createdAt DateTime @default(now())
+  pets      Pet[]
 
   @@map("orgs")
 }
 
 model Pet {
-  id          String @id @default(uuid())
+  id          String   @id @default(uuid())
   name        String
   type        String
   description String
   age         Int
   city        String
   photo       String
+  createdAt   DateTime @default(now())
 
   orgId String?
   org   Org?    @relation(fields: [orgId], references: [id])

@@ -7,7 +7,7 @@ import { hash } from 'bcryptjs'
 export class InMemoryOrgsRepository implements OrgsRepository {
   private orgs: Org[] = []
 
-  async create(data: Prisma.OrgCreateInput): Promise<Org> {
+  async create(data: Prisma.OrgCreateInput) {
     const password_hash = await hash(data.password, 8)
 
     const org = {
@@ -20,8 +20,14 @@ export class InMemoryOrgsRepository implements OrgsRepository {
     return org
   }
 
-  async findByEmail(email: string): Promise<Org | null> {
+  async findByEmail(email: string) {
     const org = this.orgs.find((org) => org.email === email)
+
+    return org || null
+  }
+
+  async findOrgById(orgId: string) {
+    const org = this.orgs.find((org) => org.id === orgId)
 
     return org || null
   }
