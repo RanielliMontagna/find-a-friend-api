@@ -2,14 +2,18 @@ import { randomUUID } from 'node:crypto'
 
 import { Prisma, Org } from '@prisma/client'
 import { OrgsRepository } from '@/repositories/orgs-repository'
+import { hash } from 'bcryptjs'
 
 export class InMemoryOrgsRepository implements OrgsRepository {
   private orgs: Org[] = []
 
   async create(data: Prisma.OrgCreateInput): Promise<Org> {
+    const password_hash = await hash(data.password, 8)
+
     const org = {
       id: randomUUID(),
       ...data,
+      password: password_hash,
     }
 
     this.orgs.push(org)

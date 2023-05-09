@@ -2,6 +2,7 @@ import { expect, describe, it, beforeEach } from 'vitest'
 
 import { InMemoryOrgsRepository } from '@/repositories/in-memory/in-memory-orgs-repository'
 import { RegisterOrgUseCase } from './register-org'
+import { OrgAlreadyExistsError } from '../errors/org-already-exists-error'
 
 let orgsRepository: InMemoryOrgsRepository
 let sut: RegisterOrgUseCase
@@ -36,6 +37,8 @@ describe('Register Org Use Case', () => {
     }
 
     await sut.execute(data)
-    await expect(sut.execute(data)).rejects.toThrow('E-mail already exists')
+    await expect(sut.execute(data)).rejects.toBeInstanceOf(
+      OrgAlreadyExistsError,
+    )
   })
 })
