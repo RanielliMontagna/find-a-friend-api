@@ -32,8 +32,8 @@ model Pet {
   photo       String
   createdAt   DateTime @default(now())
 
-  Org   Org?    @relation(fields: [orgId], references: [id])
-  orgId String?
+  Org   Org    @relation(fields: [orgId], references: [id])
+  orgId String
 
   @@map("pets")
 }
