@@ -14,9 +14,11 @@ export class InMemoryOrgsRepository implements OrgsRepository {
       id: randomUUID(),
       ...data,
       password: password_hash,
+      createdAt: new Date(),
     }
 
     this.orgs.push(org)
+
     return org
   }
 

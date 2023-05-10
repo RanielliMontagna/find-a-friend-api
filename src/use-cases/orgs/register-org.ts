@@ -7,10 +7,11 @@ import { OrgAlreadyExistsError } from '@/use-cases/errors/org-already-exists-err
 interface RegisterOrgUseCaseRequest {
   name: string
   email: string
-  address: string
-  cep: string
   phone: string
   password: string
+
+  address: string
+  cep: string
 }
 
 interface RegisterOrgUseCaseResponse {
@@ -32,12 +33,13 @@ export class RegisterOrgUseCase {
     }
 
     const org = await this.orgsRepository.create({
-      address: data.address,
-      cep: data.cep,
       email: data.email,
       name: data.name,
       password: password_hash,
       phone: data.phone,
+
+      address: data.address,
+      cep: data.cep,
     })
 
     return { org }

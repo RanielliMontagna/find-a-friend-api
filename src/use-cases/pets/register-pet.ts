@@ -37,9 +37,9 @@ export class RegisterPetUseCase {
       name: data.name,
       description: data.description,
       type: data.type,
-      city: data.city,
       age: data.age,
       photo: data.photo,
+      city: data.city,
       orgId: data.orgId,
     })
 

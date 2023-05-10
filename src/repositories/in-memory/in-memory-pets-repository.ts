@@ -11,21 +11,16 @@ export class InMemoryPetsRepository implements PetsRepository {
       name: data.name,
       description: data.description,
       type: data.type,
-      city: data.city,
       age: data.age,
       photo: data.photo,
+      city: data.city,
       orgId: data.orgId || null,
+      createdAt: new Date(),
     }
 
     this.pets.push(pet)
 
     return pet
-  }
-
-  async findPetByCity(city: string) {
-    const pets = this.pets.filter((pet) => pet.city === city)
-
-    return pets
   }
 
   async findPetById(petId: string) {
@@ -36,5 +31,11 @@ export class InMemoryPetsRepository implements PetsRepository {
     }
 
     return pet
+  }
+
+  async findPetByCity(city: string) {
+    const pets = this.pets.filter((pet) => pet.city === city)
+
+    return pets
   }
 }

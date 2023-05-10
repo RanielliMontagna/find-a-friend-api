@@ -11,12 +11,13 @@ model Org {
   id        String   @id @default(uuid())
   name      String
   email     String
-  address   String
-  cep       String
   phone     String
   password  String
+  address   String
+  cep       String
   createdAt DateTime @default(now())
-  pets      Pet[]
+
+  pets Pet[]
 
   @@map("orgs")
 }
@@ -31,8 +32,8 @@ model Pet {
   photo       String
   createdAt   DateTime @default(now())
 
+  Org   Org?    @relation(fields: [orgId], references: [id])
   orgId String?
-  org   Org?    @relation(fields: [orgId], references: [id])
 
   @@map("pets")
 }
