@@ -35,6 +35,14 @@ Além disso, o projeto é totalmete orientado a testes, utilizando testes unitá
 - [x] Todos os filtros, além da cidade, são opcionais
 - [ ] Para uma ORG acessar a aplicação como admin, ela precisa estar logada
 
+## 🛣️ Rotas
+
+| Método  | Rota             | Descrição               |
+| ------- | ---------------- | ----------------------- |
+| `POST`  | `/orgs`          | Cria uma org            |
+| `POST`  | `/sessions`      | Autentica uma org       |
+| `PATCH` | `/token/refresh` | Atualiza o token da org |
+
 ## 🚀 Tecnologias
 
 <p id="-tecnologias" />

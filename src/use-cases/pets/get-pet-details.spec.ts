@@ -40,8 +40,6 @@ describe('Get Pet Details Use Case', () => {
 
     const { pet } = await sut.execute({ petId: 'pet-01' })
 
-    console.log(pet)
-
     expect(pet.name).toBe('any_name')
   })
 
