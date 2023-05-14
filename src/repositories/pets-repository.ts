@@ -1,6 +1,6 @@
 import { Prisma, Pet } from '@prisma/client'
 
-export interface FindPetByCityParams {
+export interface FindPetParams {
   city: string
   name?: string
   description?: string
@@ -11,5 +11,5 @@ export interface FindPetByCityParams {
 export interface PetsRepository {
   create(data: Prisma.PetUncheckedCreateInput): Promise<Pet>
   findPetById(petId: string): Promise<Pet | null>
-  findPetByCity(params: FindPetByCityParams): Promise<Pet[]>
+  findPet(params: FindPetParams): Promise<Pet[]>
 }

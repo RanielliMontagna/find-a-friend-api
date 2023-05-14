@@ -1,7 +1,4 @@
-import {
-  FindPetByCityParams,
-  PetsRepository,
-} from '@/repositories/pets-repository'
+import { FindPetParams, PetsRepository } from '@/repositories/pets-repository'
 import { Prisma, Pet } from '@prisma/client'
 import { randomUUID } from 'crypto'
 
@@ -36,13 +33,7 @@ export class InMemoryPetsRepository implements PetsRepository {
     return pet
   }
 
-  async findPetByCity({
-    city,
-    age,
-    description,
-    name,
-    type,
-  }: FindPetByCityParams) {
+  async findPet({ city, age, description, name, type }: FindPetParams) {
     let pets = this.pets.filter((pet) => pet.city === city)
 
     if (age) {

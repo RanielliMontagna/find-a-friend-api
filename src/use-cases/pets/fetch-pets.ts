@@ -1,10 +1,7 @@
 import { Pet } from '@prisma/client'
-import {
-  FindPetByCityParams,
-  PetsRepository,
-} from '@/repositories/pets-repository'
+import { FindPetParams, PetsRepository } from '@/repositories/pets-repository'
 
-interface FetchPetsByCityUseCaseRequest extends FindPetByCityParams {}
+interface FetchPetsByCityUseCaseRequest extends FindPetParams {}
 interface FetchPetsByCityUseCaseResponse {
   pets: Pet[]
 }
@@ -15,7 +12,7 @@ export class FetchPetsByCityUseCase {
   async execute(
     params: FetchPetsByCityUseCaseRequest,
   ): Promise<FetchPetsByCityUseCaseResponse> {
-    const pets = await this.petsRepository.findPetByCity(params)
+    const pets = await this.petsRepository.findPet(params)
 
     return { pets }
   }
