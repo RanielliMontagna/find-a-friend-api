@@ -2,7 +2,7 @@ import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 import request from 'supertest'
 
 import { app } from '@/app'
-import { createAndAuthenticateUser } from '@/utils/test/create-and-authenticate-org'
+import { createAndAuthenticateOrg } from '@/utils/test/create-and-authenticate-org'
 
 describe('Register pet (e2e)', () => {
   beforeAll(async () => {
@@ -14,7 +14,7 @@ describe('Register pet (e2e)', () => {
   })
 
   it('should be able to register a pet', async () => {
-    const { token } = await createAndAuthenticateUser(app)
+    const { token } = await createAndAuthenticateOrg(app)
 
     const response = await request(app.server)
       .post('/pets')

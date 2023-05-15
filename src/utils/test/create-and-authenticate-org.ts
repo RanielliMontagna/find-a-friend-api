@@ -4,7 +4,7 @@ import request from 'supertest'
 import { hash } from 'bcryptjs'
 import { prisma } from '@/lib/prisma'
 
-export async function createAndAuthenticateUser(app: FastifyInstance) {
+export async function createAndAuthenticateOrg(app: FastifyInstance) {
   await prisma.org.create({
     data: {
       id: 'org-01',
