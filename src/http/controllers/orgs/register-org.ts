@@ -4,8 +4,12 @@ import { z } from 'zod'
 import { OrgAlreadyExistsError } from '@/use-cases/errors/org-already-exists-error'
 import { makeRegisterOrgUseCase } from '@/use-cases/factories/make-register-org-use-case'
 
-export async function register(request: FastifyRequest, reply: FastifyReply) {
+export async function registerOrg(
+  request: FastifyRequest,
+  reply: FastifyReply,
+) {
   const registerBodySchema = z.object({
+    id: z.string().optional(),
     name: z.string(),
     email: z.string().email(),
     password: z.string().min(6),
@@ -14,13 +18,14 @@ export async function register(request: FastifyRequest, reply: FastifyReply) {
     phone: z.string().max(11),
   })
 
-  const { name, email, password, cep, address, phone } =
+  const { id, name, email, password, cep, address, phone } =
     registerBodySchema.parse(request.body)
 
   try {
     const registerUseCase = makeRegisterOrgUseCase()
 
     await registerUseCase.execute({
+      id,
       name,
       email,
       password,

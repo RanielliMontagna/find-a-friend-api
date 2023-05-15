@@ -5,6 +5,7 @@ import { OrgsRepository } from '@/repositories/orgs-repository'
 import { OrgAlreadyExistsError } from '@/use-cases/errors/org-already-exists-error'
 
 interface RegisterOrgUseCaseRequest {
+  id?: string
   name: string
   email: string
   phone: string
@@ -33,6 +34,7 @@ export class RegisterOrgUseCase {
     }
 
     const org = await this.orgsRepository.create({
+      id: data.id,
       email: data.email,
       name: data.name,
       password: password_hash,
