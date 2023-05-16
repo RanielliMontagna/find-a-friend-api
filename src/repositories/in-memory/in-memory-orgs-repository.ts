@@ -11,8 +11,8 @@ export class InMemoryOrgsRepository implements OrgsRepository {
     const password_hash = await hash(data.password, 8)
 
     const org = {
-      id: randomUUID(),
       ...data,
+      id: data.id || randomUUID(),
       password: password_hash,
       createdAt: new Date(),
     }

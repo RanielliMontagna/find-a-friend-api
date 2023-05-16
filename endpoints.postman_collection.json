@@ -1,0 +1,221 @@
+{
+	"info": {
+		"_postman_id": "65944a26-eabd-48a4-9039-a4f864cd63de",
+		"name": "Find a Friend API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21757044"
+	},
+	"item": [
+		{
+			"name": "Orgs",
+			"item": [
+				{
+					"name": "Create Org",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"org-01\",\n    \"name\": \"Org 01\",\n    \"email\": \"org1@teste.com\",\n    \"password\": \"a1s2d3\",\n    \"cep\": \"95360000\",\n    \"address\": \"Linha Teste - 0000\",\n    \"phone\": \"54999790871\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiUrl}}/orgs",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"orgs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh Token",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "{{refreshToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"org@teste.com\",\n    \"password\": \"a1s2d3\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiUrl}}/token/refresh",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"token",
+								"refresh"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Authenticate",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"postman.setGlobalVariable(\"refreshToken\",postman.getResponseHeader(\"set-cookie\"));"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"org1@teste.com\",\r\n    \"password\": \"a1s2d3\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiUrl}}/sessions",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"sessions"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Pets",
+			"item": [
+				{
+					"name": "Register Pet",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"1ask124-56343sdf-jdsak24\",\n    \"name\": \"Niklaus\",\n    \"description\": \"Bonitinho\",\n    \"type\": \"Gato\",\n    \"city\": \"Paraí\",\n    \"age\": 1,\n    \"photo\": \"auiwshduaisd.com\",\n    \"orgId\": \"org-01\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiUrl}}/pets",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"pets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Pets",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{apiUrl}}/pets/search?city=Paraí",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"pets",
+								"search"
+							],
+							"query": [
+								{
+									"key": "city",
+									"value": "Paraí"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Pets Details",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{apiUrl}}/pets/1ask124-56343sdf-jdsak24",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"pets",
+								"1ask124-56343sdf-jdsak24"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJvcmctMDEiLCJpYXQiOjE2ODQxODkzODEsImV4cCI6MTY4NDc5NDE4MX0.iadiW26puT1oEuoL0XJe4IqWfm7dhab6zwiZb5ghFL0",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "apiUrl",
+			"value": "http://localhost:3333",
+			"type": "string"
+		}
+	]
+}
