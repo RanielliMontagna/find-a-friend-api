@@ -7,8 +7,9 @@
   &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-tecnologias">Tecnologias</a>
   &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-testes">Testes</a>
+  <a href="#-como-executar">Como executar</a>
   &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-testes">Testes</a>
 </p>
 
 ## 📖 Sobre
@@ -64,6 +65,52 @@ Além disso, o projeto é totalmete orientado a testes, utilizando testes unitá
 - [Supertest](https://www.npmjs.com/package/supertest) - Biblioteca para testes de integração;
 - [BCrypt](https://www.npmjs.com/package/bcrypt) - Biblioteca para criptografia de senhas;
 - [Zod](https://www.npmjs.com/package/zod) - Biblioteca para validação de dados;
+
+## 📦 Como executar
+
+<p id="-como-executar" />
+
+### 🎲 Instalação
+
+```bash
+# Clone o repositório
+$ git clone
+
+# Acesse a pasta do projeto
+$ cd find-a-friend-api
+
+# Instale as dependências
+$ npm install
+```
+
+### ⚙️ Configuração
+
+```bash
+# Crie um arquivo .env na raiz do projeto
+$ touch .env
+
+# Copie o conteúdo do arquivo .env.example para o arquivo .env
+$ cp .env.example .env
+
+# Preencha as variáveis de ambiente
+$ vim .env
+
+# Crie o banco de dados no docker
+$ docker-compose up -d
+
+# Execute as migrations
+$ npm run prisma migrate dev
+```
+
+### ⚡ Execução
+
+```bash
+
+# Execute o projeto
+$ npm run dev
+
+# Por padrão, o projeto estará disponível em http://localhost:3000
+```
 
 ## 🧪 Testes
 
