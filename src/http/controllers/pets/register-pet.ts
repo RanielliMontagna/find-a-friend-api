@@ -9,6 +9,7 @@ export async function registerPet(
   reply: FastifyReply,
 ) {
   const registerBodySchema = z.object({
+    id: z.string().optional(),
     name: z.string(),
     age: z.number().min(1).max(100),
     city: z.string(),
@@ -18,13 +19,14 @@ export async function registerPet(
     orgId: z.string(),
   })
 
-  const { name, age, city, photo, description, type, orgId } =
+  const { name, age, city, photo, description, type, orgId, id } =
     registerBodySchema.parse(request.body)
 
   try {
     const registerUseCase = makeRegisterPetUseCase()
 
     await registerUseCase.execute({
+      id,
       name,
       age,
       city,

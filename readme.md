@@ -37,11 +37,15 @@ Além disso, o projeto é totalmete orientado a testes, utilizando testes unitá
 
 ## 🛣️ Rotas
 
-| Método  | Rota             | Descrição               |
-| ------- | ---------------- | ----------------------- |
-| `POST`  | `/orgs`          | Cria uma org            |
-| `POST`  | `/sessions`      | Autentica uma org       |
-| `PATCH` | `/token/refresh` | Atualiza o token da org |
+| Método  | Rota             | Descrição                 |
+| ------- | ---------------- | ------------------------- |
+| `POST`  | `/orgs`          | Cria uma org              |
+| `POST`  | `/sessions`      | Autentica uma org         |
+| `PATCH` | `/token/refresh` | Atualiza o token da org   |
+| ------- | ---------------- | -----------------------   |
+| `POST`  | `/pets`          | Registrar um pet          |
+| `GET`   | `/pets/search`   | Buscar pets               |
+| `GET`   | `/pets/:id`      | Buscar detalhes de um pet |
 
 ## 🚀 Tecnologias
 

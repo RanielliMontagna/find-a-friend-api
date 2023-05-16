@@ -29,6 +29,7 @@ export class PrismaPetsRepository implements PetsRepository {
   async create(data: Prisma.PetUncheckedCreateInput) {
     const pet = await prisma.pet.create({
       data: {
+        id: data.id,
         name: data.name,
         description: data.description,
         age: data.age,
